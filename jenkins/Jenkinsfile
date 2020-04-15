@@ -12,6 +12,9 @@ def notify(status) {
 }
 pipeline {
     agent { label 'master' }
+    environment {
+       color = "blue"
+   }
     stages {
         stage('build') {
             steps {
@@ -26,7 +29,9 @@ pipeline {
                    echo "Build URL : ${env.BUILD_URL}"
                    echo "Job Name : ${env.JOB_NAME}"
                    echo "Build Number : ${env.BUILD_NUMBER}"
- 
+                steps {
+               sh "printenv | sort"
+            }
                }
             }
         }
